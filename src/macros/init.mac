@@ -1,0 +1,7 @@
+/run/initialize
+/vis/open OGL
+/vis/drawVolume
+/vis/viewer/setAutoRefresh true
+/vis/scene/add/axes 0 0 0 20 mm
+/tracking/verbose 0
+/run/beamOn 100

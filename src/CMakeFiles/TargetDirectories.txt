@@ -1,0 +1,3 @@
+C:/Users/romil/Desktop/geant4-leo-proton-detector/src/CMakeFiles/leo_detector.dir
+C:/Users/romil/Desktop/geant4-leo-proton-detector/src/CMakeFiles/ALL_BUILD.dir
+C:/Users/romil/Desktop/geant4-leo-proton-detector/src/CMakeFiles/ZERO_CHECK.dir
