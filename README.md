@@ -1,37 +1,92 @@
 # Geant4 LEO Proton Detector Simulation
 
-Simulation of proton interactions in a silicon detector using Geant4.
+Monte Carlo simulation of proton energy deposition and Linear Energy Transfer (LET) in silicon detectors using Geant4, with applications to space radiation environments.
+
+---
 
 ## Overview
 
-This project models energy deposition of protons in a silicon detector under simplified Low Earth Orbit (LEO) radiation conditions.
+This project models the interaction of energetic protons with a semiconductor detector, representative of electronic systems operating in Low Earth Orbit (LEO).
+
+The simulation focuses on energy deposition and radiation effects in silicon, including the impact of aluminum shielding typically found in spacecraft structures.
+
+---
+
+## Physical Model
 
 The simulation includes:
 
-- Proton beam generation (10–200 MeV)
+- Proton source (10–200 MeV)
 - Silicon detector (300 µm thickness)
-- Energy deposition tracking per event
-- CSV output for statistical analysis
+- Vacuum environment (G4_Galactic)
+- Aluminum shielding layer (configurable)
 
-## Physics
+Geant4 handles particle transport and physics processes, including:
 
-The model captures:
+- Ionization energy loss (Bethe–Bloch regime)
+- Multiple scattering
+- Energy deposition fluctuations (Landau-like behavior)
 
-- Ionization energy loss (Bethe-Bloch regime)
-- Energy deposition fluctuations (Landau-like distribution)
-- Particle transport through matter
+---
 
-## Structure
+## Key Concepts
 
-- `src/` → Geant4 implementation
-- `macros/` → simulation control files
-- `analysis/` → Python scripts for data analysis
-- `results/` → output data
+### Energy Deposition
 
-## Build
+The detector operates in a **thin-target regime**, where protons traverse the silicon without stopping.
 
-```bash
-mkdir build
-cd build
-cmake .. -DGeant4_DIR="C:\Geant4\install\lib\cmake\Geant4"
-cmake --build . --config Release
+This results in:
+
+- Partial energy deposition (keV range)
+- Narrow statistical distributions
+- Event-by-event fluctuations
+
+---
+
+### Linear Energy Transfer (LET)
+
+The simulation computes:
+
+LET = dE/dx
+
+Where:
+
+- dE = energy deposited in silicon
+- dx = detector thickness (300 µm)
+
+LET is a critical parameter for evaluating radiation effects in microelectronics, including:
+
+- Single Event Upsets (SEU)
+- Device degradation
+- Radiation hardness
+
+---
+
+### Shielding Effects
+
+An aluminum layer is introduced to simulate spacecraft shielding.
+
+Observed effects include:
+
+- Reduction of particle energy before reaching the detector
+- Decrease in deposited energy
+- Modification of the energy distribution
+- Attenuation of radiation-induced effects
+
+---
+
+## Example Result
+
+Energy deposition in a 300 µm silicon detector:
+
+- Typical deposited energy: **~50–200 keV**
+- Narrow peak due to thin detector geometry
+- Reduced energy deposition when shielding is applied
+
+![Energy Histogram](analysis/energy_plot.png)
+
+---
+
+## Output
+
+The simulation generates a CSV file:
